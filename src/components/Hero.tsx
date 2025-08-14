@@ -178,7 +178,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
                         </button>
                         <div className="w-full aspect-square rounded-3xl overflow-hidden bg-gradient-to-r from-purple-500 to-cyan-500 p-2 shadow-2xl">
                             <img
-                                src="/images/myprofile.jpg"
+                                src="/images/myprofile1.jpg"
                                 alt="Thanseer Jelani Profile - Full View"
                                 className="w-full h-full object-cover rounded-2xl"
                                 onClick={(e) => e.stopPropagation()}
