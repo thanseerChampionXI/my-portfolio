@@ -28,14 +28,29 @@ export const skills: SkillCategory = {
 
 export const projects: Project[] = [
   {
-    title: 'ChampionXI - Fantasy Sports App',
-    description: 'Led frontend development of a future-ready fantasy app with 30% UI performance improvement and 20% increase in user engagement.',
-    tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Java', 'Spring Boot', 'PostgreSQL'],
+    title: 'SalanaPay - Employee Payroll System',
+    description: 'Leading frontend development of a comprehensive employee payroll management system that automates salary calculations, bonuses, deductions, and generates digital payslips with real-time data synchronization.',
+    tech: ['React', 'TypeScript', 'Vite', 'React Router', 'React Query', 'React Hook Form', 'Java', 'Spring Boot', 'PostgreSQL', 'REST APIs'],
     status: 'Current Project',
+    image: '💰',
+    githubUrl: '#', // Keep as # if private repository
+    highlights: ['Real-time Data Sync', 'Automated Payroll', 'Frontend Leadership', 'Backend Integration'],
+    category: 'professional',
+    company: 'StarSoftech',
+    role: 'Frontend Lead Developer'
+  },
+  {
+    title: 'ChampionXI - Fantasy Sports App',
+    description: 'Led full-stack development of a future-ready fantasy app with 30% UI performance improvement and 20% increase in user engagement, handling both frontend architecture and backend API development.',
+    tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Java', 'Spring Boot', 'PostgreSQL', 'REST APIs'],
+    status: 'In Review',
     image: '🏆',
-    demoUrl: '#',
-    githubUrl: '#',
-    highlights: ['30% Performance Boost', '20% User Engagement', 'Scalable Architecture']
+    url: 'https://championxi.com/', // Live project URL
+    githubUrl: '#', // Keep as # if private repository
+    highlights: ['30% Performance Boost', '20% User Engagement', 'Full-stack Development', 'Scalable Architecture'],
+    category: 'professional',
+    company: 'StarSoftech',
+    role: 'Full-stack Developer'
   },
   {
     title: 'DiGiLend - Decentralized Loan Platform',
@@ -43,9 +58,51 @@ export const projects: Project[] = [
     tech: ['React', 'Node.js', 'Ethereum', 'Blockchain', 'Smart Contracts'],
     period: 'Nov 2023 - Mar 2024',
     image: '🔗',
-    demoUrl: '#',
+    githubUrl: 'https://github.com/thanseerjelani/DiGiLend-DApp',
+    // No url property - will show "Deploying soon..." for live demo
+    highlights: ['Blockchain Integration', 'Smart Contracts', 'P2P Architecture'],
+    category: 'personal'
+  },
+  {
+    title: 'Developer Portfolio Website',
+    description: 'Modern, responsive portfolio website showcasing projects, skills, and professional experience with clean UI design and smooth animations.',
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Responsive Design'],
+    period: 'Current',
+    image: '🌐',
+    url: 'https://thanseer-portfolio.netlify.app/',
+    githubUrl: 'https://github.com/thanseerChampionXI/my-portfolio',
+    highlights: ['Modern UI/UX', 'Responsive Design', 'Clean Architecture', 'Fast Performance'],
+    category: 'personal'
+  },
+  {
+    title: 'Personal Dashboard',
+    description: 'Comprehensive dashboard application featuring real-time weather updates, latest news feed, and interactive todo list management in a unified interface.',
+    tech: ['React', 'TypeScript', 'Vite', 'Weather API', 'News API'],
+    status: 'In Development',
+    image: '📊',
     githubUrl: '#',
-    highlights: ['Blockchain Integration', 'Smart Contracts', 'P2P Architecture']
+    highlights: ['Real-time Data', 'API Integration', 'Modern Dashboard UI', 'Multi-feature App'],
+    category: 'personal'
+  },
+  {
+    title: 'Expense Tracker',
+    description: 'Smart budget management application for tracking daily expenses, categorizing transactions, and visualizing spending patterns with interactive charts.',
+    tech: ['React', 'TypeScript', 'Vite', 'Chart.js', 'Local Storage'],
+    status: 'In Development',
+    image: '💳',
+    githubUrl: '#',
+    highlights: ['Budget Management', 'Data Visualization', 'Category Tracking', 'Financial Analytics'],
+    category: 'personal'
+  },
+  {
+    title: 'Recipe Finder',
+    description: 'Food discovery application that allows users to search, explore, and save favorite recipes using external APIs with detailed nutritional information.',
+    tech: ['React', 'TypeScript', 'Vite', 'Recipe API', 'Responsive Design'],
+    status: 'In Development',
+    image: '🍳',
+    githubUrl: '#',
+    highlights: ['Recipe Search', 'API Integration', 'Save Favorites', 'Nutritional Data'],
+    category: 'personal'
   },
   {
     title: 'Student Management System',
@@ -53,9 +110,10 @@ export const projects: Project[] = [
     tech: ['Java', 'Java Swing', 'MySQL', 'JDBC'],
     period: 'Sep 2022 - Dec 2022',
     image: '🎓',
-    demoUrl: '#',
-    githubUrl: '#',
-    highlights: ['Multi-role System', 'Desktop Application', 'Database Integration']
+    githubUrl: 'https://github.com/thanseerjelani/SMS',
+    // No url property - will show "Deploying soon..." for live demo (desktop app)
+    highlights: ['Multi-role System', 'Desktop Application', 'Database Integration'],
+    category: 'personal'
   }
 ];
 

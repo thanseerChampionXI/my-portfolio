@@ -17,9 +17,13 @@ export interface Project {
   status?: string;
   period?: string;
   image: string;
-  demoUrl: string;
-  githubUrl: string;
+  demoUrl?: string; // Made optional
+  githubUrl?: string; // Made optional
+  url?: string; // New optional URL property
   highlights: string[];
+  category: 'professional' | 'personal';
+  company?: string;
+  role?: string;
 }
 
 export interface Experience {
@@ -57,3 +61,4 @@ export interface Counters {
   experience: number;
   technologies: number;
 }
+
