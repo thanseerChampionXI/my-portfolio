@@ -64,7 +64,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
                                     <div className="w-full h-full rounded-full overflow-hidden relative">
                                         {/* Replace this src with your actual photo */}
                                         <img
-                                            src="/images/myprofile.jpg"
+                                            src="/images/myprofile1.jpg"
                                             alt="Thanseer Jelani Profile"
                                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                                         />
