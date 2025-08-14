@@ -207,23 +207,36 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                     </div>
                 </div>
 
-                {/* Projects Scrolling Section */}
+                {/* Projects Section */}
                 {currentProjects.length > 0 && (
                     <div className="relative">
-                        {/* Gradient Overlays for smooth edges */}
-                        <div className={`absolute left-0 top-0 w-32 h-full bg-gradient-to-r ${isDarkMode ? 'from-slate-800/30 to-transparent' : 'from-gray-100/50 to-transparent'} z-10 pointer-events-none`}></div>
-                        <div className={`absolute right-0 top-0 w-32 h-full bg-gradient-to-l ${isDarkMode ? 'from-slate-800/30 to-transparent' : 'from-gray-100/50 to-transparent'} z-10 pointer-events-none`}></div>
+                        {/* Show gradient overlays and scrolling only if we have more than 3 projects */}
+                        {currentProjects.length > 3 && (
+                            <>
+                                {/* Gradient Overlays for smooth edges */}
+                                <div className={`absolute left-0 top-0 w-32 h-full bg-gradient-to-r ${isDarkMode ? 'from-slate-800/30 to-transparent' : 'from-gray-100/50 to-transparent'} z-10 pointer-events-none`}></div>
+                                <div className={`absolute right-0 top-0 w-32 h-full bg-gradient-to-l ${isDarkMode ? 'from-slate-800/30 to-transparent' : 'from-gray-100/50 to-transparent'} z-10 pointer-events-none`}></div>
+                            </>
+                        )}
 
-                        {/* Scrolling Track */}
-                        <div className="overflow-hidden scroll-container">
-                            <div className="flex animate-scroll">
-                                {/* First set of projects */}
-                                {currentProjects.map((project, index) => renderProject(project, index, 'first'))}
-
-                                {/* Duplicate set for seamless loop */}
-                                {currentProjects.map((project, index) => renderProject(project, index, 'second'))}
+                        {/* Conditional rendering based on project count */}
+                        {currentProjects.length <= 3 ? (
+                            /* Static grid for few projects */
+                            <div className="flex justify-center gap-6 px-4">
+                                {currentProjects.map((project, index) => renderProject(project, index, 'static'))}
                             </div>
-                        </div>
+                        ) : (
+                            /* Scrolling track for many projects */
+                            <div className="overflow-hidden scroll-container">
+                                <div className="flex animate-scroll scroll-smooth">
+                                    {/* First set of projects */}
+                                    {currentProjects.map((project, index) => renderProject(project, index, 'first'))}
+
+                                    {/* Duplicate set for seamless loop */}
+                                    {currentProjects.map((project, index) => renderProject(project, index, 'second'))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
 
