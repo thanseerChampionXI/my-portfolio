@@ -163,7 +163,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
 
     return (
         <section id="projects" className={`py-20 ${isDarkMode ? 'bg-slate-800/30' : 'bg-gray-100/50'} overflow-hidden`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-24">
                 <h2 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
                     My Work & Projects
                 </h2>

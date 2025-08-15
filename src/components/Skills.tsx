@@ -9,7 +9,7 @@ interface SkillsProps {
 const Skills: React.FC<SkillsProps> = ({ isDarkMode }) => {
     return (
         <section id="skills" className={`py-20 ${isDarkMode ? 'bg-slate-800/30' : 'bg-gray-100/50'}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-24">
                 <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
                     Skills & Technologies
                 </h2>

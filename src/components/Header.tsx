@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({
                     </div>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center space-x-8">
+                    <div className="hidden lg:flex items-center space-x-8">
                         {navigationItems.map((section) => (
                             <button
                                 key={section}
@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <div className="md:hidden flex items-center gap-2">
+                    <div className="lg:hidden flex items-center gap-2">
                         <button
                             onClick={toggleTheme}
                             className={`p-2 rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-gray-200'}`}
@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({
 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                    <div className={`md:hidden py-4 border-t ${isDarkMode ? 'border-purple-500/20' : 'border-blue-200'}`}>
+                    <div className={`lg:hidden py-4 border-t ${isDarkMode ? 'border-purple-500/20' : 'border-blue-200'}`}>
                         {navigationItems.map((section) => (
                             <button
                                 key={section}
