@@ -16,6 +16,17 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState<FormData>({ name: '', email: '', message: '' });
   const [counters, setCounters] = useState<Counters>({ projects: 0, experience: 0, technologies: 0 });
+  const [showContent, setShowContent] = useState(false);
+
+  // Loading screen effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      // Start scale-up animation shortly after loading completes
+      setTimeout(() => setShowContent(true), 200);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Loading screen effect
   useEffect(() => {
@@ -98,22 +109,22 @@ const App: React.FC = () => {
   // Loading Screen Component
   if (isLoading) {
     return (
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center z-50 overflow-hidden">
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-800 via-teal-800 to-emerald-900 flex items-center justify-center z-50 overflow-hidden">
         <div className="text-center space-y-8 px-4">
           <div className="relative">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 p-1 animate-spin">
-              <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center">
-                <span className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-full bg-gradient-to-r from-teal-400 to-emerald-500 p-1 animate-spin">
+              <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center">
+                <span className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-teal-300 to-emerald-400 bg-clip-text text-transparent">
                   TJ
                 </span>
               </div>
             </div>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 animate-ping opacity-20"></div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-400 to-emerald-500 animate-ping opacity-20"></div>
           </div>
           <div className="space-y-2">
             <h1 className="text-xl sm:text-2xl font-bold text-white">Loading Portfolio...</h1>
             <div className="w-48 sm:w-64 h-2 bg-slate-700 rounded-full mx-auto overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full animate-pulse"></div>
+              <div className="h-full bg-gradient-to-r from-teal-400 to-emerald-500 rounded-full animate-pulse"></div>
             </div>
           </div>
         </div>
@@ -122,8 +133,8 @@ const App: React.FC = () => {
   }
 
   const themeClasses = isDarkMode
-    ? 'bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white'
-    : 'bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50 text-gray-900';
+    ? 'bg-gradient-to-br from-slate-800 via-teal-900 to-emerald-900 text-white'
+    : 'bg-gradient-to-br from-gray-50 via-teal-50 to-emerald-50 text-gray-900';
 
   return (
     <div className={`min-h-screen transition-all duration-500 overflow-x-hidden ${themeClasses}`}>
@@ -132,7 +143,7 @@ const App: React.FC = () => {
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className={`absolute w-1 h-1 sm:w-2 sm:h-2 ${isDarkMode ? 'bg-purple-400' : 'bg-blue-400'} rounded-full opacity-20 animate-pulse`}
+            className={`absolute w-1 h-1 sm:w-2 sm:h-2 ${isDarkMode ? 'bg-teal-400' : 'bg-emerald-400'} rounded-full opacity-20 animate-pulse`}
             style={{
               left: `${Math.random() * 95}%`, // Keep within 95% to avoid overflow
               top: `${Math.random() * 95}%`,  // Keep within 95% to avoid overflow
@@ -152,18 +163,21 @@ const App: React.FC = () => {
         scrollToSection={scrollToSection}
       />
 
-      <Hero isDarkMode={isDarkMode} counters={counters} />
-      <About isDarkMode={isDarkMode} />
-      <Experience isDarkMode={isDarkMode} />
-      <Projects isDarkMode={isDarkMode} />
-      <Skills isDarkMode={isDarkMode} />
-      <Contact
-        isDarkMode={isDarkMode}
-        formData={formData}
-        setFormData={setFormData}
-        handleFormSubmit={handleFormSubmit}
-      />
-      <Footer isDarkMode={isDarkMode} scrollToSection={scrollToSection} />
+      <div className={`transition-all duration-1000 ease-out transform ${showContent ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        }`}>
+        <Hero isDarkMode={isDarkMode} counters={counters} />
+        <About isDarkMode={isDarkMode} />
+        <Experience isDarkMode={isDarkMode} />
+        <Projects isDarkMode={isDarkMode} />
+        <Skills isDarkMode={isDarkMode} />
+        <Contact
+          isDarkMode={isDarkMode}
+          formData={formData}
+          setFormData={setFormData}
+          handleFormSubmit={handleFormSubmit}
+        />
+        <Footer isDarkMode={isDarkMode} scrollToSection={scrollToSection} />
+      </div>
     </div>
   );
 };

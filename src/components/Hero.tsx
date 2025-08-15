@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
     // Skill rotation - Fixed to include all 4 skills
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentSkill(prev => (prev + 1) % 4); // Changed to 4 for all skills
+            setCurrentSkill(prev => (prev + 1) % 5); // Changed to 4 for all skills
         }, 2000);
         return () => clearInterval(interval);
     }, []);
@@ -57,11 +57,11 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
     };
 
     // Updated skills array with recommended approach
-    const skills = ['Full-Stack Development', 'Frontend Development', 'Backend Development', 'UI/UX Design'];
+    const skills = ['Full-Stack Development', 'Frontend Development', 'Backend Development', 'Reactjs Development', 'UI/UX Design'];
     const techStack = ['React', 'TypeScript', 'Next.js', 'Java', 'Spring Boot', 'AWS', 'Docker', 'GraphQL'];
 
     return (
-        <section id="home" className="relative min-h-screen overflow-hidden flex items-center py-12 sm:py-16 lg:py-20">
+        <section id="home" className="relative min-h-screen overflow-hidden flex items-center py-4 sm:py-8 lg:py-4 xl:py-2">
             {/* Dynamic Animated Background */}
             <div className="absolute inset-0 overflow-hidden">
                 {/* Large animated gradient orbs */}
@@ -108,15 +108,15 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
             </div>
 
             <div className="relative z-10 w-full max-w-10xl mx-auto px-4 sm:px-6 lg:px-24 h-full">
-                <div className="min-h-screen flex flex-col justify-center">
+                <div className="min-h-screen flex flex-col justify-center pt-16 lg:pt-20">
 
                     {/* Top Section - Photo and Name */}
-                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-12 mb-8 lg:mb-10 mt-6 lg:mt-2">
+                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-12 mb-6 lg:mb-8">
 
                         {/* Photo Section - Top on mobile, Right on tablet/desktop */}
                         <div className="flex justify-center lg:justify-end lg:order-2 lg:flex-1">
                             <div className="relative">
-                                <div className="relative w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 h-40 sm:h-48 md:h-56 lg:h-64 xl:h-72 perspective-1000">
+                                <div className="relative w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 h-40 sm:h-48 md:h-56 lg:h-64 xl:h-68 perspective-1000">
                                     <div
                                         className={`relative w-full h-full transition-transform duration-1000 transform-style-3d ${isFlipped ? 'rotate-y-180' : ''}`}
                                     >
@@ -189,7 +189,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
                         </div>
 
                         {/* Name and Title Section - After photo on mobile, Left on tablet/desktop */}
-                        <div className="text-center lg:text-left lg:order-1 lg:flex-1 space-y-4 lg:space-y-6">
+                        <div className="text-center lg:text-left lg:order-1 lg:flex-1 space-y-3 lg:space-y-4">
                             {/* Status badge - Different positioning for mobile vs desktop */}
                             <div className="hidden lg:flex justify-start">
                                 <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-full">
@@ -217,19 +217,19 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
                             <div className="flex lg:hidden justify-center">
                                 <div className="inline-flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-full">
                                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                    <span className="text-xs font-medium text-green-400">Available for hire/Projects</span>
+                                    <span className="text-xs font-medium text-green-400">Available for hire/projects</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Bottom Section - Skills and Content */}
-                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-10">
+                    <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
 
                         {/* Left Column - Skills and Description */}
-                        <div className="space-y-6 lg:space-y-7">
+                        <div className="space-y-5 lg:space-y-6">
                             {/* Dynamic skill display */}
-                            <div className="space-y-3 lg:space-y-4 text-center lg:text-left">
+                            <div className="space-y-2 lg:space-y-3 text-center lg:text-left">
                                 <p className={`text-lg sm:text-xl lg:text-2xl font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                                     I specialize in
                                 </p>
@@ -261,7 +261,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
                             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center lg:justify-start">
                                 <a
                                     href="mailto:thanseerjelani@gmail.com"
-                                    className="group relative inline-flex items-center justify-center gap-2 lg:gap-3 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 px-6 lg:px-7 py-3 lg:py-3.5 rounded-xl lg:rounded-2xl transition-all duration-300 text-white font-semibold text-sm sm:text-base lg:text-lg shadow-2xl hover:shadow-purple-500/25 hover:scale-105"
+                                    className="group relative inline-flex items-center justify-center gap-2 lg:gap-3 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 px-6 lg:px-7 py-3 lg:py-3.5 rounded-xl lg:rounded-2xl transition-all duration-300 text-white font-semibold text-sm sm:text-base lg:text-md shadow-2xl hover:shadow-purple-500/25 hover:scale-105"
                                 >
                                     <Mail size={16} className="sm:hidden" />
                                     <Mail size={18} className="hidden sm:block lg:hidden" />
@@ -317,7 +317,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
                         </div>
 
                         {/* Right Column - Stats and Tech Stack */}
-                        <div className="space-y-6 lg:space-y-7">
+                        <div className="space-y-5 lg:space-y-6">
                             {/* Stats cards */}
                             <div className="grid grid-cols-3 gap-3 lg:gap-4">
                                 {[
@@ -340,8 +340,8 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
                             </div>
 
                             {/* Tech stack showcase */}
-                            <div className={`p-4 sm:p-5 lg:p-6 rounded-xl lg:rounded-2xl backdrop-blur-sm border border-white/20 ${isDarkMode ? 'bg-slate-800/30' : 'bg-white/50'}`}>
-                                <h4 className="text-base lg:text-lg font-semibold text-cyan-400 mb-3 lg:mb-4 text-center lg:text-left">Tech Arsenal</h4>
+                            <div className={`p-4 sm:p-5 lg:p-4 rounded-xl lg:rounded-2xl backdrop-blur-sm border border-white/20 ${isDarkMode ? 'bg-slate-800/30' : 'bg-white/50'}`}>
+                                <h4 className="text-base lg:text-md font-semibold text-cyan-400 mb-3 lg:mb-4 text-center lg:text-left">Tech Arsenal</h4>
                                 <div className="flex flex-wrap gap-2 lg:gap-3 justify-center lg:justify-start">
                                     {techStack.map((tech, index) => (
                                         <span
@@ -387,7 +387,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
             )}
 
             {/* Scroll Indicator */}
-            <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div className="absolute bottom-4 sm:bottom-6 lg:bottom-2 left-1/2 transform -translate-x-1/2 animate-bounce">
                 <ChevronDown size={20} className="sm:hidden text-purple-400" />
                 <ChevronDown size={24} className="hidden sm:block lg:hidden text-purple-400" />
                 <ChevronDown size={28} className="hidden lg:block text-purple-400" />
