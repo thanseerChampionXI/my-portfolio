@@ -7,6 +7,8 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import AnimatedSection from './common/AnimatedSection';
+import LoadingScreen from './common/LoadingScreen';
 import { FormData, Counters } from './types';
 
 const App: React.FC = () => {
@@ -16,17 +18,6 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState<FormData>({ name: '', email: '', message: '' });
   const [counters, setCounters] = useState<Counters>({ projects: 0, experience: 0, technologies: 0 });
-  const [showContent, setShowContent] = useState(false);
-
-  // Loading screen effect
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      // Start scale-up animation shortly after loading completes
-      setTimeout(() => setShowContent(true), 200);
-    }, 2500);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Loading screen effect
   useEffect(() => {
@@ -107,78 +98,74 @@ const App: React.FC = () => {
   };
 
   // Loading Screen Component
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-800 via-teal-800 to-emerald-900 flex items-center justify-center z-50 overflow-hidden">
-        <div className="text-center space-y-8 px-4">
-          <div className="relative">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-full bg-gradient-to-r from-teal-400 to-emerald-500 p-1 animate-spin">
-              <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center">
-                <span className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-teal-300 to-emerald-400 bg-clip-text text-transparent">
-                  TJ
-                </span>
-              </div>
-            </div>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-400 to-emerald-500 animate-ping opacity-20"></div>
-          </div>
-          <div className="space-y-2">
-            <h1 className="text-xl sm:text-2xl font-bold text-white">Loading Portfolio...</h1>
-            <div className="w-48 sm:w-64 h-2 bg-slate-700 rounded-full mx-auto overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-teal-400 to-emerald-500 rounded-full animate-pulse"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   const themeClasses = isDarkMode
     ? 'bg-gradient-to-br from-slate-800 via-teal-900 to-emerald-900 text-white'
     : 'bg-gradient-to-br from-gray-50 via-teal-50 to-emerald-50 text-gray-900';
 
   return (
-    <div className={`min-h-screen transition-all duration-500 overflow-x-hidden ${themeClasses}`}>
-      {/* Floating Particles Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute w-1 h-1 sm:w-2 sm:h-2 ${isDarkMode ? 'bg-teal-400' : 'bg-emerald-400'} rounded-full opacity-20 animate-pulse`}
-            style={{
-              left: `${Math.random() * 95}%`, // Keep within 95% to avoid overflow
-              top: `${Math.random() * 95}%`,  // Keep within 95% to avoid overflow
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 4}s`
-            }}
-          />
-        ))}
-      </div>
+    <>
+      <LoadingScreen isLoading={isLoading} />
 
-      <Header
-        isMenuOpen={isMenuOpen}
-        setIsMenuOpen={setIsMenuOpen}
-        activeSection={activeSection}
-        isDarkMode={isDarkMode}
-        toggleTheme={toggleTheme}
-        scrollToSection={scrollToSection}
-      />
+      <div className={`min-h-screen transition-all duration-500 overflow-x-hidden ${themeClasses}`}>
+        {/* Floating Particles Background */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className={`absolute w-1 h-1 sm:w-2 sm:h-2 ${isDarkMode ? 'bg-teal-400' : 'bg-emerald-400'} rounded-full opacity-20 animate-pulse`}
+              style={{
+                left: `${Math.random() * 95}%`,
+                top: `${Math.random() * 95}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${3 + Math.random() * 4}s`
+              }}
+            />
+          ))}
+        </div>
 
-      <div className={`transition-all duration-1000 ease-out transform ${showContent ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        }`}>
-        <Hero isDarkMode={isDarkMode} counters={counters} />
-        <About isDarkMode={isDarkMode} />
-        <Experience isDarkMode={isDarkMode} />
-        <Projects isDarkMode={isDarkMode} />
-        <Skills isDarkMode={isDarkMode} />
-        <Contact
+        <Header
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          activeSection={activeSection}
           isDarkMode={isDarkMode}
-          formData={formData}
-          setFormData={setFormData}
-          handleFormSubmit={handleFormSubmit}
+          toggleTheme={toggleTheme}
+          scrollToSection={scrollToSection}
         />
-        <Footer isDarkMode={isDarkMode} scrollToSection={scrollToSection} />
+
+        {/* Hero section - no animation wrapper needed as it's the first section */}
+        <Hero isDarkMode={isDarkMode} counters={counters} />
+
+        {/* Animated sections with slide-up animation that triggers every time */}
+        <AnimatedSection delay={0}>
+          <About isDarkMode={isDarkMode} />
+        </AnimatedSection>
+
+        <AnimatedSection delay={30}>
+          <Experience isDarkMode={isDarkMode} />
+        </AnimatedSection>
+
+        <AnimatedSection delay={60}>
+          <Projects isDarkMode={isDarkMode} />
+        </AnimatedSection>
+
+        <AnimatedSection delay={30}>
+          <Skills isDarkMode={isDarkMode} />
+        </AnimatedSection>
+
+        <AnimatedSection delay={0}>
+          <Contact
+            isDarkMode={isDarkMode}
+            formData={formData}
+            setFormData={setFormData}
+            handleFormSubmit={handleFormSubmit}
+          />
+        </AnimatedSection>
+
+        <AnimatedSection delay={20}>
+          <Footer isDarkMode={isDarkMode} scrollToSection={scrollToSection} />
+        </AnimatedSection>
       </div>
-    </div>
+    </>
   );
 };
 

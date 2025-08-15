@@ -21,10 +21,10 @@ const Header: React.FC<HeaderProps> = ({
     const navigationItems = ['home', 'about', 'experience', 'projects', 'skills', 'blog', 'contact'];
 
     return (
-        <nav className={`fixed top-0 w-full ${isDarkMode ? 'bg-slate-900/90' : 'bg-white/90'} backdrop-blur-md z-50 border-b ${isDarkMode ? 'border-purple-500/20' : 'border-blue-200'}`}>
+        <nav className={`fixed top-0 w-full ${isDarkMode ? 'bg-slate-900/90' : 'bg-white/90'} backdrop-blur-md z-50 border-b ${isDarkMode ? 'border-teal-500/20' : 'border-teal-200'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center py-4">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                    <div className="text-2xl font-bold bg-gradient-to-r from-teal-400 to-emerald-500 bg-clip-text text-transparent">
                         Thanseer Jelani
                     </div>
 
@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({
                                 key={section}
                                 onClick={() => scrollToSection(section)}
                                 className={`capitalize transition-colors duration-200 ${activeSection === section
-                                    ? 'text-cyan-400'
+                                    ? 'text-emerald-400'
                                     : isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
                                     }`}
                             >
@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({
 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                    <div className={`lg:hidden py-4 border-t ${isDarkMode ? 'border-purple-500/20' : 'border-blue-200'}`}>
+                    <div className={`lg:hidden py-4 border-t ${isDarkMode ? 'border-teal-500/20' : 'border-teal-200'}`}>
                         {navigationItems.map((section) => (
                             <button
                                 key={section}

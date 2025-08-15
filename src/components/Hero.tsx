@@ -98,13 +98,14 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode, counters }) => {
                     </div>
                 ))}
 
-                {/* Grid pattern overlay */}
+                {/* Grid pattern overlay 
                 <div className="absolute inset-0 opacity-5"
                     style={{
                         backgroundImage: `linear-gradient(${isDarkMode ? '#ffffff' : '#000000'} 1px, transparent 1px), linear-gradient(90deg, ${isDarkMode ? '#ffffff' : '#000000'} 1px, transparent 1px)`,
                         backgroundSize: '50px 50px'
                     }}
                 ></div>
+                */}
             </div>
 
             <div className="relative z-10 w-full max-w-10xl mx-auto px-4 sm:px-6 lg:px-24 h-full">

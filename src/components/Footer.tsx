@@ -60,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode, scrollToSection }) => {
 
                 <div className="border-t border-gray-800 mt-8 pt-8 text-center">
                     <p className="text-gray-400">
-                        © 2024 Thanseer Jelani. Built with React, TypeScript & Tailwind CSS. All rights reserved.
+                        © 2025 Thanseer Jelani. Built with React, TypeScript & Tailwind CSS. All rights reserved.
                     </p>
                 </div>
             </div>
