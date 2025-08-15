@@ -160,6 +160,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
         </div>
     );
 
+
     return (
         <section id="projects" className={`py-20 ${isDarkMode ? 'bg-slate-800/30' : 'bg-gray-100/50'} overflow-hidden`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -210,32 +211,39 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                 {/* Projects Section */}
                 {currentProjects.length > 0 && (
                     <div className="relative">
-                        {/* Show gradient overlays and scrolling only if we have more than 3 projects */}
-                        {currentProjects.length > 3 && (
-                            <>
-                                {/* Gradient Overlays for smooth edges */}
-                                <div className={`absolute left-0 top-0 w-32 h-full bg-gradient-to-r ${isDarkMode ? 'from-slate-800/30 to-transparent' : 'from-gray-100/50 to-transparent'} z-10 pointer-events-none`}></div>
-                                <div className={`absolute right-0 top-0 w-32 h-full bg-gradient-to-l ${isDarkMode ? 'from-slate-800/30 to-transparent' : 'from-gray-100/50 to-transparent'} z-10 pointer-events-none`}></div>
-                            </>
-                        )}
-
-                        {/* Conditional rendering based on project count */}
-                        {currentProjects.length <= 3 ? (
-                            /* Static grid for few projects */
+                        {/* Conditional rendering for different layouts */}
+                        {currentProjects.length === 1 ? (
+                            /* Single project - centered */
+                            <div className="flex justify-center px-4">
+                                {renderProject(currentProjects[0], 0, 'single')}
+                            </div>
+                        ) : currentProjects.length === 2 && window.innerWidth >= 768 ? (
+                            /* Two projects on larger screens - centered */
+                            <div className="flex justify-center gap-6 px-4">
+                                {currentProjects.map((project, index) => renderProject(project, index, 'dual'))}
+                            </div>
+                        ) : currentProjects.length <= 3 && window.innerWidth >= 1024 ? (
+                            /* Up to 3 projects on desktop - static grid */
                             <div className="flex justify-center gap-6 px-4">
                                 {currentProjects.map((project, index) => renderProject(project, index, 'static'))}
                             </div>
                         ) : (
-                            /* Scrolling track for many projects */
-                            <div className="overflow-hidden scroll-container">
-                                <div className="flex animate-scroll scroll-smooth">
-                                    {/* First set of projects */}
-                                    {currentProjects.map((project, index) => renderProject(project, index, 'first'))}
+                            /* Scrolling layout for mobile or many projects */
+                            <>
+                                {/* Show gradient overlays for scrolling */}
+                                <div className={`absolute left-0 top-0 w-16 sm:w-32 h-full bg-gradient-to-r ${isDarkMode ? 'from-slate-800/30 to-transparent' : 'from-gray-100/50 to-transparent'} z-10 pointer-events-none`}></div>
+                                <div className={`absolute right-0 top-0 w-16 sm:w-32 h-full bg-gradient-to-l ${isDarkMode ? 'from-slate-800/30 to-transparent' : 'from-gray-100/50 to-transparent'} z-10 pointer-events-none`}></div>
 
-                                    {/* Duplicate set for seamless loop */}
-                                    {currentProjects.map((project, index) => renderProject(project, index, 'second'))}
+                                <div className="overflow-hidden scroll-container">
+                                    <div className="flex animate-scroll scroll-smooth">
+                                        {/* First set of projects */}
+                                        {currentProjects.map((project, index) => renderProject(project, index, 'first'))}
+
+                                        {/* Duplicate set for seamless loop */}
+                                        {currentProjects.map((project, index) => renderProject(project, index, 'second'))}
+                                    </div>
                                 </div>
-                            </div>
+                            </>
                         )}
                     </div>
                 )}
@@ -254,7 +262,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                 )}
             </div>
 
-            {/* CSS Animation */}
+            {/* CSS Animation - Slowed down from 30s to 60s */}
             <style>{`
                 @keyframes scroll {
                     0% {
@@ -266,7 +274,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                 }
                 
                 .animate-scroll {
-                    animation: scroll 30s linear infinite;
+                    animation: scroll 240s linear infinite;
                 }
                 
                 .scroll-container:hover .animate-scroll {
@@ -278,6 +286,19 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                     -webkit-line-clamp: 3;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
+                }
+
+                /* Responsive scrolling speeds */
+                @media (max-width: 768px) {
+                    .animate-scroll {
+                        animation: scroll 180s linear infinite;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .animate-scroll {
+                        animation: scroll 120s linear infinite;
+                    }
                 }
             `}</style>
         </section>
