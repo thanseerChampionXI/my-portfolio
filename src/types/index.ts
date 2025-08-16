@@ -41,11 +41,15 @@ export interface Testimonial {
 }
 
 export interface BlogPost {
+  id: string;
   title: string;
   excerpt: string;
+  content: string; // Full content for the blog post
   date: string;
   readTime: string;
   tags: string[];
+  author?: string;
+  coverImage?: string;
 }
 
 export interface FormData {

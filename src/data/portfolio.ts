@@ -2,7 +2,7 @@ import { Skill, Project, Experience, BlogPost } from '../types';
 import { Code, Globe, Database, Server, Palette, GitBranch, Layers, Zap, Box } from 'lucide-react';
 
 
-export const skills: Skill[] = [
+export const skillsCategory: Skill[] = [
     // Frontend
     {
         name: 'JavaScript',
@@ -228,37 +228,6 @@ export const projects: Project[] = [
   }
 ];
 
-export const blogPosts: BlogPost[] = [
-  {
-    title: 'React + Vite: The Perfect Development Stack',
-    excerpt: 'Discover why React + Vite has become the go-to combination for building lightning-fast, modern web applications with superior developer experience.',
-    date: '2024-01-20',
-    readTime: '7 min read',
-    tags: ['React', 'Vite', 'JavaScript', 'Development', 'Build Tools']
-  },
-  {
-    title: 'Building Scalable React Applications',
-    excerpt: 'Best practices for creating maintainable and scalable React applications with modern tooling.',
-    date: '2024-01-15',
-    readTime: '8 min read',
-    tags: ['React', 'JavaScript', 'Best Practices', 'Architecture']
-  },
-  {
-    title: 'Getting Started with Blockchain Development',
-    excerpt: 'A comprehensive guide to understanding blockchain development and building your first dApp.',
-    date: '2024-01-10',
-    readTime: '10 min read',
-    tags: ['Blockchain', 'Ethereum', 'Web3', 'Smart Contracts']
-  },
-  {
-    title: 'TypeScript Tips for Better Code',
-    excerpt: 'Advanced TypeScript techniques that will make your code more robust and maintainable.',
-    date: '2024-01-05',
-    readTime: '9 min read',
-    tags: ['TypeScript', 'Development', 'Tips', 'Best Practices']
-  }
-];
-
 export const experience: Experience[] = [
   {
     title: 'Junior Software Developer',
@@ -285,4 +254,56 @@ export const experience: Experience[] = [
     ],
     color: 'from-cyan-500 to-blue-500'
   }
+];
+
+// Updated skills array with recommended approach
+export const skills = ['Full-Stack Development', 'Frontend Development', 'Backend Development', 'Reactjs Development', 'UI/UX Design'];
+export const techStack = ['React', 'TypeScript', 'Next.js', 'Java', 'Spring Boot', 'AWS', 'Docker', 'GraphQL'];
+
+// Simple blog data structure - you can replace this with your actual data
+export const blogPosts: BlogPost[] = [
+    {
+        id: 'react-vite-perfect-stack',
+        title: 'React + Vite: The Perfect Development Stack',
+        excerpt: 'Discover why React + Vite has become the go-to combination for building lightning-fast, modern web applications with superior developer experience.',
+        content: '', // Empty - you'll add content later
+        date: '2024-01-20',
+        readTime: '7 min read',
+        tags: ['React', 'Vite', 'JavaScript', 'Development', 'Build Tools'],
+        author: 'Author Name',
+        coverImage: '/images/reactvite.png' 
+    },
+    {
+        id: 'building-scalable-react-applications',
+        title: 'Building Scalable React Applications',
+        excerpt: 'Best practices for creating maintainable and scalable React applications with modern tooling.',
+        content: '', // Empty - you'll add content later
+        date: '2024-01-15',
+        readTime: '8 min read',
+        tags: ['React', 'JavaScript', 'Best Practices', 'Architecture'],
+        author: 'Author Name',
+        coverImage: '/images/react.png'
+    },
+    {
+        id: 'blockchain-development-guide',
+        title: 'Getting Started with Blockchain Development',
+        excerpt: 'A comprehensive guide to understanding blockchain development and building your first dApp.',
+        content: '', // Empty - you'll add content later
+        date: '2024-01-10',
+        readTime: '10 min read',
+        tags: ['Blockchain', 'Ethereum', 'Web3', 'Smart Contracts'],
+        author: 'Author Name',
+        coverImage: '/images/blockchain.png'
+    },
+    {
+        id: 'typescript-tips-better-code',
+        title: 'TypeScript Tips for Better Code',
+        excerpt: 'Advanced TypeScript techniques that will make your code more robust and maintainable.',
+        content: '', // Empty - you'll add content later
+        date: '2024-01-05',
+        readTime: '9 min read',
+        tags: ['TypeScript', 'Development', 'Tips', 'Best Practices'],
+        author: 'Author Name',
+        coverImage: '/images/typescript.png'
+    }
 ];

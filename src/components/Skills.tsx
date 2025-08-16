@@ -1,13 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
-import { skills } from '../data/portfolio';
+import { skillsCategory } from '../data/portfolio';
 
 const Skills: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
     const [activeCategory, setActiveCategory] = useState<string>('all');
     const [searchQuery, setSearchQuery] = useState('');
 
     const filteredSkills = useMemo(() => {
-        return skills.filter(skill => {
+        return skillsCategory.filter(skill => {
             const matchesCategory = activeCategory === 'all' || skill.category === activeCategory;
             const matchesSearch = skill.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 skill.description.toLowerCase().includes(searchQuery.toLowerCase()) ||

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,15 +11,27 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AnimatedSection from './common/AnimatedSection';
 import LoadingScreen from './common/LoadingScreen';
-import { FormData, Counters } from './types';
+import type { FormData, Counters } from './types';
+import BlogLayout from './components/BlogPages/BlogLayout';
 
-const App: React.FC = () => {
+// Main content component that uses routing
+const MainContent: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const [formData, setFormData] = useState<FormData>({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState<FormData & { phone?: string; attachedFile?: File | null }>({
+    name: '',
+    email: '',
+    message: '',
+    phone: '',
+    attachedFile: null
+  });
   const [counters, setCounters] = useState<Counters>({ projects: 0, experience: 0, technologies: 0 });
+
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  const isBlogPage = location.pathname.startsWith('/blog');
 
   // Loading screen effect
   useEffect(() => {
@@ -28,7 +41,7 @@ const App: React.FC = () => {
 
   // Counter animation
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && isHomePage) {
       const animateCounters = () => {
         const targets = { projects: 10, experience: 1, technologies: 12 };
         const duration = 2000;
@@ -53,10 +66,12 @@ const App: React.FC = () => {
       const timer = setTimeout(animateCounters, 1000);
       return () => clearTimeout(timer);
     }
-  }, [isLoading]);
+  }, [isLoading, isHomePage]);
 
-  // Scroll handling
+  // Scroll handling - only for home page
   useEffect(() => {
+    if (!isHomePage) return;
+
     const handleScroll = () => {
       const sections = ['home', 'about', 'experience', 'projects', 'skills', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 100;
@@ -77,7 +92,7 @@ const App: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -91,84 +106,96 @@ const App: React.FC = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would integrate with EmailJS or your preferred email service
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
-  };
-
-  // Loading Screen Component
   const themeClasses = isDarkMode
     ? 'bg-gradient-to-br from-slate-800 via-teal-900 to-emerald-900 text-white'
     : 'bg-gradient-to-br from-gray-50 via-teal-50 to-emerald-50 text-gray-900';
+
+  // Home page component
+  const HomePage = () => (
+    <>
+      {/* Floating Particles Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className={`absolute w-1 h-1 sm:w-2 sm:h-2 ${isDarkMode ? 'bg-teal-400' : 'bg-emerald-400'} rounded-full opacity-20 animate-pulse`}
+            style={{
+              left: `${Math.random() * 95}%`,
+              top: `${Math.random() * 95}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${3 + Math.random() * 4}s`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Hero section - no animation wrapper needed as it's the first section */}
+      <Hero isDarkMode={isDarkMode} counters={counters} />
+
+      {/* Animated sections with slide-up animation that triggers every time */}
+      <AnimatedSection delay={0}>
+        <About isDarkMode={isDarkMode} />
+      </AnimatedSection>
+
+      <AnimatedSection delay={20}>
+        <Experience isDarkMode={isDarkMode} />
+      </AnimatedSection>
+
+      <AnimatedSection delay={20}>
+        <Projects isDarkMode={isDarkMode} />
+      </AnimatedSection>
+
+      <Skills isDarkMode={isDarkMode} />
+
+      <AnimatedSection delay={0}>
+        <Blog isDarkMode={isDarkMode} />
+      </AnimatedSection>
+
+      <AnimatedSection delay={0}>
+        <Contact
+          isDarkMode={isDarkMode}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      </AnimatedSection>
+
+      <AnimatedSection delay={20}>
+        <Footer isDarkMode={isDarkMode} scrollToSection={scrollToSection} />
+      </AnimatedSection>
+    </>
+  );
 
   return (
     <>
       <LoadingScreen isLoading={isLoading} />
 
       <div className={`min-h-screen transition-all duration-500 overflow-x-hidden ${themeClasses}`}>
-        {/* Floating Particles Background */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className={`absolute w-1 h-1 sm:w-2 sm:h-2 ${isDarkMode ? 'bg-teal-400' : 'bg-emerald-400'} rounded-full opacity-20 animate-pulse`}
-              style={{
-                left: `${Math.random() * 95}%`,
-                top: `${Math.random() * 95}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${3 + Math.random() * 4}s`
-              }}
-            />
-          ))}
-        </div>
-
-        <Header
-          isMenuOpen={isMenuOpen}
-          setIsMenuOpen={setIsMenuOpen}
-          activeSection={activeSection}
-          isDarkMode={isDarkMode}
-          toggleTheme={toggleTheme}
-          scrollToSection={scrollToSection}
-        />
-
-        {/* Hero section - no animation wrapper needed as it's the first section */}
-        <Hero isDarkMode={isDarkMode} counters={counters} />
-
-        {/* Animated sections with slide-up animation that triggers every time */}
-        <AnimatedSection delay={0}>
-          <About isDarkMode={isDarkMode} />
-        </AnimatedSection>
-
-        <AnimatedSection delay={20}>
-          <Experience isDarkMode={isDarkMode} />
-        </AnimatedSection>
-
-        <AnimatedSection delay={20}>
-          <Projects isDarkMode={isDarkMode} />
-        </AnimatedSection>
-
-        <Skills isDarkMode={isDarkMode} />
-
-        <AnimatedSection delay={0}>
-          <Blog isDarkMode={isDarkMode} />
-        </AnimatedSection>
-
-        <AnimatedSection delay={0}>
-          <Contact
+        {/* Conditionally render Header - hide on blog pages */}
+        {!isBlogPage && (
+          <Header
+            isMenuOpen={isMenuOpen}
+            setIsMenuOpen={setIsMenuOpen}
+            activeSection={activeSection}
             isDarkMode={isDarkMode}
-            formData={formData}
-            setFormData={setFormData}
-            handleFormSubmit={handleFormSubmit}
+            toggleTheme={toggleTheme}
+            scrollToSection={scrollToSection}
           />
-        </AnimatedSection>
+        )}
 
-        <AnimatedSection delay={20}>
-          <Footer isDarkMode={isDarkMode} scrollToSection={scrollToSection} />
-        </AnimatedSection>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/blog/*" element={<BlogLayout isDarkMode={isDarkMode} />} />
+        </Routes>
       </div>
     </>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <MainContent />
+    </Router>
   );
 };
 
