@@ -1,29 +1,27 @@
 export interface Skill {
-  name: string;
-  level: number;
+    name: string;
+    description: string;
+    tags: string[];
+    icon: React.ComponentType<any>;
+    color: string;
+    category: 'frontend' | 'backend' | 'database' | 'tools';
 }
 
-export interface SkillCategory {
-  frontend: Skill[];
-  backend: Skill[];
-  database: Skill[];
-  tools: Skill[];
-}
-
+// Updated interface to include url property
 export interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  status?: string;
-  period?: string;
-  image: string;
-  demoUrl?: string; // Made optional
-  githubUrl?: string; // Made optional
-  url?: string; // New optional URL property
-  highlights: string[];
-  category: 'professional' | 'personal';
-  company?: string;
-  role?: string;
+    title: string;
+    description: string;
+    tech: string[];
+    status?: string;
+    period?: string;
+    image: string;
+    demoUrl?: string; // Made optional
+    githubUrl?: string; // Made optional
+    url?: string; // New optional URL property
+    highlights: string[];
+    category: 'professional' | 'personal';
+    company?: string;
+    role?: string;
 }
 
 export interface Experience {

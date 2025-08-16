@@ -1,30 +1,141 @@
-import { SkillCategory, Project, Experience, BlogPost } from '../types';
+import { Skill, Project, Experience, BlogPost } from '../types';
+import { Code, Globe, Database, Server, Palette, GitBranch, Layers, Zap, Box } from 'lucide-react';
 
-export const skills: SkillCategory = {
-  frontend: [
-    { name: 'React', level: 90 },
-    { name: 'Next.js', level: 85 },
-    { name: 'TypeScript', level: 80 },
-    { name: 'JavaScript', level: 85 },
-    { name: 'Tailwind CSS', level: 90 },
-    { name: 'HTML5/CSS3', level: 95 }
-  ],
-  backend: [
-    { name: 'Java', level: 85 },
-    { name: 'Spring Boot', level: 80 },
-    { name: 'Node.js', level: 75 },
-    { name: 'Ethereum', level: 70 }
-  ],
-  database: [
-    { name: 'MySQL', level: 80 },
-    { name: 'PostgreSQL', level: 75 }
-  ],
-  tools: [
-    { name: 'Git/GitHub', level: 85 },
-    { name: 'VS Code', level: 90 },
-    { name: 'IntelliJ IDEA', level: 90 }
-  ]
-};
+
+export const skills: Skill[] = [
+    // Frontend
+    {
+        name: 'JavaScript',
+        description: 'Modern ES6+ development with async/await',
+        tags: ['ES6+', 'TypeScript', 'DOM API'],
+        icon: Box,
+        color: 'text-yellow-400',
+        category: 'frontend'
+    },
+    {
+        name: 'React.js',
+        description: 'Building responsive SPAs with React Hooks',
+        tags: ['Redux', 'Next.js', 'Router'],
+        icon: Code,
+        color: 'text-cyan-400',
+        category: 'frontend'
+    },
+    {
+        name: 'HTML5',
+        description: 'Semantic and accessible web structures',
+        tags: ['SEO', 'A11y', 'Forms'],
+        icon: Globe,
+        color: 'text-red-400',
+        category: 'frontend'
+    },
+    {
+        name: 'CSS3',
+        description: 'Modern layouts and animations',
+        tags: ['Flexbox', 'Grid', 'SASS'],
+        icon: Palette,
+        color: 'text-blue-400',
+        category: 'frontend'
+    },
+    {
+        name: 'Tailwind',
+        description: 'Utility-first CSS framework',
+        tags: ['PostCSS', 'Design', 'UI'],
+        icon: Zap,
+        color: 'text-teal-400',
+        category: 'frontend'
+    },
+    {
+        name: 'TypeScript',
+        description: 'Type-safe JavaScript development',
+        tags: ['Types', 'Interfaces', 'Generics'],
+        icon: Code,
+        color: 'text-blue-500',
+        category: 'frontend'
+    },
+    // Backend
+    {
+        name: 'Node.js',
+        description: 'Server-side JavaScript development',
+        tags: ['Express', 'REST', 'GraphQL'],
+        icon: Server,
+        color: 'text-green-400',
+        category: 'backend'
+    },
+    {
+        name: 'Java',
+        description: 'Enterprise application development',
+        tags: ['Spring', 'JVM', 'OOP'],
+        icon: Box,
+        color: 'text-orange-400',
+        category: 'backend'
+    },
+    {
+        name: 'Spring Boot',
+        description: 'Java framework for microservices',
+        tags: ['REST', 'JPA', 'Security'],
+        icon: Server,
+        color: 'text-green-500',
+        category: 'backend'
+    },
+    {
+        name: 'Ethereum',
+        description: 'Blockchain and smart contract development',
+        tags: ['Solidity', 'Web3', 'DeFi'],
+        icon: Layers,
+        color: 'text-purple-400',
+        category: 'backend'
+    },
+    // Database
+    {
+        name: 'MySQL',
+        description: 'Relational database management',
+        tags: ['Queries', 'Indexing', 'Optimization'],
+        icon: Database,
+        color: 'text-blue-600',
+        category: 'database'
+    },
+    {
+        name: 'PostgreSQL',
+        description: 'Advanced relational database',
+        tags: ['ACID', 'JSON', 'Performance'],
+        icon: Database,
+        color: 'text-blue-500',
+        category: 'database'
+    },
+    // Tools
+    {
+        name: 'Git & GitHub',
+        description: 'Version control and collaboration',
+        tags: ['CI/CD', 'Actions', 'Git Flow'],
+        icon: GitBranch,
+        color: 'text-orange-500',
+        category: 'tools'
+    },
+    {
+        name: 'VS Code',
+        description: 'Modern code editor with extensions',
+        tags: ['Extensions', 'Debugging', 'IntelliSense'],
+        icon: Code,
+        color: 'text-blue-400',
+        category: 'tools'
+    },
+    {
+        name: 'IntelliJ IDEA',
+        description: 'Powerful IDE for Java development',
+        tags: ['Refactoring', 'Debugging', 'Spring'],
+        icon: Box,
+        color: 'text-purple-500',
+        category: 'tools'
+    },
+    {
+        name: 'Vite',
+        description: 'Fast build tool for modern web development',
+        tags: ['HMR', 'ESM', 'Bundling'],
+        icon: Zap,
+        color: 'text-yellow-500',
+        category: 'tools'
+    }
+];
 
 export const projects: Project[] = [
   {

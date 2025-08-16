@@ -2,23 +2,6 @@ import React, { useState } from 'react';
 import { Eye, Github, Calendar, Trophy, Building, User } from 'lucide-react';
 import { projects } from '../data/portfolio';
 
-// Updated interface to include url property
-export interface Project {
-    title: string;
-    description: string;
-    tech: string[];
-    status?: string;
-    period?: string;
-    image: string;
-    demoUrl?: string; // Made optional
-    githubUrl?: string; // Made optional
-    url?: string; // New optional URL property
-    highlights: string[];
-    category: 'professional' | 'personal';
-    company?: string;
-    role?: string;
-}
-
 interface ProjectsProps {
     isDarkMode: boolean;
 }
@@ -33,7 +16,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
     const renderProject = (project: any, index: number, keyPrefix: string) => (
         <div
             key={`${keyPrefix}-${index}`}
-            className={`${isDarkMode ? 'bg-slate-800/50 border-purple-500/20 hover:border-purple-500/40' : 'bg-white/50 border-blue-200 hover:border-blue-300'} 
+            className={`${isDarkMode ? 'bg-slate-800/40 border-teal-500/20 hover:border-emerald-500/40' : 'bg-white/50 border-blue-200 hover:border-blue-300'} 
             rounded-xl p-6 border backdrop-blur-sm transition-all duration-300 hover:scale-105 group
             flex-shrink-0 w-80 mx-4`}
         >
@@ -42,13 +25,13 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                     <div className="flex items-center gap-3">
                         <div className="text-4xl">{project.image}</div>
                         {project.category === 'professional' && (
-                            <div className="flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">
+                            <div className="flex items-center gap-1 px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs">
                                 <Building size={12} />
                                 <span>{project.company}</span>
                             </div>
                         )}
                         {project.category === 'personal' && (
-                            <div className="flex items-center gap-1 px-2 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">
+                            <div className="flex items-center gap-1 px-2 py-1 bg-teal-500/20 text-teal-400 rounded-full text-xs">
                                 <User size={12} />
                                 <span>Personal</span>
                             </div>
@@ -61,7 +44,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                                 href={project.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 bg-purple-500/20 text-purple-400 rounded-full hover:bg-purple-500/30 transition-colors duration-300"
+                                className="p-2 bg-teal-500/20 text-teal-400 rounded-full hover:bg-teal-500/30 transition-colors duration-300"
                                 title="Visit Project"
                             >
                                 <Eye size={16} />
@@ -71,7 +54,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                                 href={project.demoUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 bg-purple-500/20 text-purple-400 rounded-full hover:bg-purple-500/30 transition-colors duration-300"
+                                className="p-2 bg-teal-500/20 text-teal-400 rounded-full hover:bg-teal-500/30 transition-colors duration-300"
                                 title="Live Demo"
                             >
                                 <Eye size={16} />
@@ -96,7 +79,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                                 href={project.githubUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 bg-cyan-500/20 text-cyan-400 rounded-full hover:bg-cyan-500/30 transition-colors duration-300"
+                                className="p-2 bg-emerald-500/20 text-emerald-400 rounded-full hover:bg-emerald-500/30 transition-colors duration-300"
                                 title="GitHub Repository"
                             >
                                 <Github size={16} />
@@ -118,11 +101,11 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
                 </div>
 
                 <div>
-                    <h3 className="text-xl font-semibold text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300">
+                    <h3 className="text-xl font-semibold text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300">
                         {project.title}
                     </h3>
                     {project.role && (
-                        <p className="text-sm text-purple-400 mb-1">Role: {project.role}</p>
+                        <p className="text-sm text-teal-400 mb-1">Role: {project.role}</p>
                     )}
                     <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mt-2 leading-relaxed line-clamp-3`}>
                         {project.description}
@@ -141,7 +124,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
 
                 <div className="flex flex-wrap gap-2">
                     {project.tech.slice(0, 5).map((tech: string, idx: number) => (
-                        <span key={idx} className="px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs hover:bg-purple-500/30 transition-colors duration-300">
+                        <span key={idx} className={`px-2 py-1 rounded-full text-xs hover:bg-teal-500/30 transition-colors duration-300 ${isDarkMode ? 'bg-teal-500/20 text-teal-300' : 'bg-purple-500/20 text-purple-300'}`}>
                             {tech}
                         </span>
                     ))}
@@ -162,9 +145,9 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
 
 
     return (
-        <section id="projects" className={`py-20 ${isDarkMode ? 'bg-slate-800/30' : 'bg-gray-100/50'} overflow-hidden`}>
+        <section id="projects" className={`py-8 sm:py-12 md:py-16 lg:py-20 ${isDarkMode ? 'bg-slate-800/30' : 'bg-gray-100/50'} overflow-hidden`}>
             <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-24">
-                <h2 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                <h2 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
                     My Work & Projects
                 </h2>
 
@@ -174,34 +157,34 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
 
                 {/* Tab Navigation */}
                 <div className="flex justify-center mb-12 px-4">
-                    <div className={`${isDarkMode ? 'bg-slate-800/80' : 'bg-white/80'} backdrop-blur-sm rounded-2xl p-2 border border-purple-500/20 flex flex-col sm:flex-row gap-2 w-full sm:w-auto max-w-md sm:max-w-none`}>
+                    <div className={`${isDarkMode ? 'bg-slate-800/80 border-teal-500/20' : 'bg-white/80'} backdrop-blur-sm rounded-2xl p-2 border flex flex-col sm:flex-row gap-2 w-full sm:w-auto max-w-md sm:max-w-none`}>
                         <button
                             onClick={() => setActiveTab('personal')}
                             className={`px-4 sm:px-6 lg:px-8 py-3 rounded-xl transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 font-medium text-sm sm:text-base ${activeTab === 'personal'
-                                ? 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg'
-                                : `${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-800'} hover:bg-purple-500/10`
+                                ? 'bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-lg'
+                                : `${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-800'} hover:bg-teal-500/10`
                                 }`}
                         >
                             <User size={16} className="sm:hidden" />
                             <User size={18} className="hidden sm:block" />
                             <span className="hidden xs:inline">Personal Projects</span>
                             <span className="xs:hidden">Personal</span>
-                            <span className="bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full text-xs">
+                            <span className="bg-teal-500/20 text-teal-400 px-2 py-1 rounded-full text-xs">
                                 {personalProjects.length}
                             </span>
                         </button>
                         <button
                             onClick={() => setActiveTab('professional')}
                             className={`px-4 sm:px-6 lg:px-8 py-3 rounded-xl transition-all duration-300 flex items-center justify-center sm:justify-start gap-2 font-medium text-sm sm:text-base ${activeTab === 'professional'
-                                ? 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg'
-                                : `${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-800'} hover:bg-purple-500/10`
+                                ? 'bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-lg'
+                                : `${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-800'} hover:bg-teal-500/10`
                                 }`}
                         >
                             <Building size={16} className="sm:hidden" />
                             <Building size={18} className="hidden sm:block" />
                             <span className="hidden xs:inline">Professional Work</span>
                             <span className="xs:hidden">Professional</span>
-                            <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded-full text-xs">
+                            <span className="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-full text-xs">
                                 {professionalProjects.length}
                             </span>
                         </button>

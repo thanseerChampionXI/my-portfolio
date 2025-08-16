@@ -8,24 +8,37 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ isDarkMode, scrollToSection }) => {
     return (
-        <footer className={`${isDarkMode ? 'bg-slate-900 border-purple-500/20' : 'bg-gray-900 border-gray-700'} py-12 border-t`}>
+        <footer className={`${isDarkMode ? 'bg-gradient-to-br from-slate-800 via-teal-900 to-emerald-900 border-teal-500/20' : 'bg-gray-900 border-gray-700'} py-8 sm:py-12 md:py-16 lg:py-20 border-t`}>
             <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-24">
                 <div className="grid md:grid-cols-3 gap-8">
                     <div>
-                        <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-4">
+                        <h3 className="text-2xl font-bold bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent mb-4">
                             Thanseer Jelani
                         </h3>
-                        <p className="text-gray-400 mb-4">
+                        <p className="text-gray-300 mb-4">
                             Full-Stack Developer passionate about creating innovative solutions with modern technologies.
                         </p>
                         <div className="flex gap-4">
-                            <a href="https://linkedin.com/in/thanseer-jelani-520768255/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300">
+                            <a
+                                href="https://linkedin.com/in/thanseer-jelani-520768255/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`${isDarkMode ? 'text-gray-300 hover:text-teal-400' : 'text-gray-400 hover:text-white'} transition-colors duration-300`}
+                            >
                                 <Linkedin size={20} />
                             </a>
-                            <a href="https://github.com/thanseerjelani" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300">
+                            <a
+                                href="https://github.com/thanseerjelani"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`${isDarkMode ? 'text-gray-300 hover:text-teal-400' : 'text-gray-400 hover:text-white'} transition-colors duration-300`}
+                            >
                                 <Github size={20} />
                             </a>
-                            <a href="mailto:thanseerjelani@gmail.com" className="text-gray-400 hover:text-white transition-colors duration-300">
+                            <a
+                                href="mailto:thanseerjelani@gmail.com"
+                                className={`${isDarkMode ? 'text-gray-300 hover:text-teal-400' : 'text-gray-400 hover:text-white'} transition-colors duration-300`}
+                            >
                                 <Mail size={20} />
                             </a>
                         </div>
@@ -38,7 +51,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode, scrollToSection }) => {
                                 <button
                                     key={item}
                                     onClick={() => scrollToSection(item.toLowerCase())}
-                                    className="block text-gray-400 hover:text-white transition-colors duration-300"
+                                    className={`block ${isDarkMode ? 'text-gray-300 hover:text-emerald-400' : 'text-gray-400 hover:text-white'} transition-colors duration-300`}
                                 >
                                     {item}
                                 </button>
@@ -49,8 +62,14 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode, scrollToSection }) => {
                     <div>
                         <h4 className="text-lg font-semibold text-white mb-4">Technologies</h4>
                         <div className="flex flex-wrap gap-2">
-                            {['React', 'TypeScript', 'Java', 'Spring Boot', 'Next.js', 'Tailwind CSS'].map((tech) => (
-                                <span key={tech} className="px-2 py-1 bg-purple-500/20 text-purple-300 rounded text-sm">
+                            {['React', 'TypeScript', 'Java', 'Spring Boot', 'Next.js', 'Tailwind CSS', 'Vite'].map((tech) => (
+                                <span
+                                    key={tech}
+                                    className={`px-2 py-1 rounded text-sm border ${isDarkMode
+                                        ? 'bg-teal-500/20 text-teal-300 border-teal-500/30 hover:bg-teal-500/30'
+                                        : 'bg-purple-500/20 text-purple-300 border-purple-500/30'
+                                        } transition-colors duration-300`}
+                                >
                                     {tech}
                                 </span>
                             ))}
@@ -58,8 +77,8 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode, scrollToSection }) => {
                     </div>
                 </div>
 
-                <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-                    <p className="text-gray-400">
+                <div className={`border-t ${isDarkMode ? 'border-teal-800/50' : 'border-gray-800'} mt-8 pt-8 text-center`}>
+                    <p className="text-gray-300">
                         © 2025 Thanseer Jelani. Built with React, TypeScript & Tailwind CSS. All rights reserved.
                     </p>
                 </div>
