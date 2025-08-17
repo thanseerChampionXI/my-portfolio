@@ -178,7 +178,7 @@ export const projects: Project[] = [
     title: 'Developer Portfolio Website',
     description: 'Modern, responsive portfolio website showcasing projects, skills, and professional experience with clean UI design and smooth animations.',
     tech: ['React', 'TypeScript', 'Tailwind CSS', 'Responsive Design'],
-    period: 'Current',
+    period: 'Deployed',
     image: '🌐',
     url: 'https://thanseer-portfolio.netlify.app/',
     githubUrl: 'https://github.com/thanseerChampionXI/my-portfolio',
