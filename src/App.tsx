@@ -165,29 +165,31 @@ const MainContent: React.FC = () => {
     </>
   );
 
+  // Show loading screen while loading
+  if (isLoading) {
+    return <LoadingScreen isLoading={isLoading} />;
+  }
+
+  // Show main content after loading completes
   return (
-    <>
-      <LoadingScreen isLoading={isLoading} />
+    <div className={`min-h-screen transition-all duration-500 overflow-x-hidden ${themeClasses}`}>
+      {/* Conditionally render Header - hide on blog pages */}
+      {!isBlogPage && (
+        <Header
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          activeSection={activeSection}
+          isDarkMode={isDarkMode}
+          toggleTheme={toggleTheme}
+          scrollToSection={scrollToSection}
+        />
+      )}
 
-      <div className={`min-h-screen transition-all duration-500 overflow-x-hidden ${themeClasses}`}>
-        {/* Conditionally render Header - hide on blog pages */}
-        {!isBlogPage && (
-          <Header
-            isMenuOpen={isMenuOpen}
-            setIsMenuOpen={setIsMenuOpen}
-            activeSection={activeSection}
-            isDarkMode={isDarkMode}
-            toggleTheme={toggleTheme}
-            scrollToSection={scrollToSection}
-          />
-        )}
-
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/blog/*" element={<BlogLayout isDarkMode={isDarkMode} />} />
-        </Routes>
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/blog/*" element={<BlogLayout isDarkMode={isDarkMode} />} />
+      </Routes>
+    </div>
   );
 };
 
