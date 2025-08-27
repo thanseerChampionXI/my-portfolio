@@ -186,12 +186,13 @@ export const projects: Project[] = [
     category: 'personal'
   },
   {
-    title: 'Personal Dashboard',
+    title: 'DashForge',
     description: 'Comprehensive dashboard application featuring real-time weather updates, latest news feed, and interactive todo list management in a unified interface.',
     tech: ['React', 'TypeScript', 'Vite', 'Weather API', 'News API'],
-    status: 'In Development',
+    status: 'Deployed',
     image: '📊',
-    githubUrl: '#',
+    url: 'https://dashforge.netlify.app/',
+    githubUrl: 'https://github.com/thanseerjelani/dashforge-dashboard',
     highlights: ['Real-time Data', 'API Integration', 'Modern Dashboard UI', 'Multi-feature App'],
     category: 'personal'
   },
